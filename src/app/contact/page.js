@@ -1,0 +1,60 @@
+'use client';
+
+import React from 'react';
+
+
+export default function ContactPage() {
+  return (
+    <div className="header">
+      <div className="navbar">
+        <a href="/" className="logo">MocqAI.</a>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/course">Course</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <div className="account">
+          <a href="/account"><i className="fas fa-user-circle"></i></a>
+        </div>
+      </div>
+
+      <div className="contact-section">
+        <div className="content">
+          <h1>Contact Us 📩</h1>
+          <p>Have questions, feedback, or suggestions? We’d love to hear from you. Reach out to us anytime and our team will respond shortly.</p>
+
+          <div className="contact-container">
+            {/* Contact Info */}
+            <div className="contact-info">
+              <div className="info-block">
+                <h3><i className="fas fa-envelope"></i> Email</h3>
+                <p>support@mocqai.com</p>
+              </div>
+
+              <div className="info-block">
+                <h3><i className="fas fa-phone"></i> Phone</h3>
+                <p>+91 7575880714</p>
+              </div>
+
+              <div className="info-block">
+                <h3><i className="fas fa-map-marker-alt"></i> Address</h3>
+                <p>Ahmedabad, Gujarat, India</p>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="contact-form">
+              <form>
+                <input type="text" name="name" placeholder="Your Name" required />
+                <input type="email" name="email" placeholder="Your Email" required />
+                <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+                <button type="submit" className="btnn">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
