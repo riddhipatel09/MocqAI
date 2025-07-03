@@ -4,9 +4,9 @@ const axios = require('axios');
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
-router.post('/gemini', async (req, res) => {
+router.post('/', async (req, res) => {
   const { prompt } = req.body;
-    console.log('👉 Received prompt:', prompt);
+  console.log('👉 Received prompt:', prompt);
 
   if (!prompt) {
     return res.status(400).json({ error: 'Prompt is required' });
@@ -14,7 +14,7 @@ router.post('/gemini', async (req, res) => {
 
   try {
     const geminiResponse = await axios.post(
-'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
       {
         contents: [
           {
@@ -36,11 +36,10 @@ router.post('/gemini', async (req, res) => {
 
     res.json({ response: text });
   } catch (err) {
-  console.error('❌ Gemini SDK Error:', err.message);
-  console.error('🔎 Full error:', err.response?.data || err);  // <-- Add this
-  res.status(500).json({ error: 'Gemini API failed', details: err.message });
-}
-
+    console.error('❌ Gemini SDK Error:', err.message);
+    console.error('🔎 Full error:', err.response?.data || err);
+    res.status(500).json({ error: 'Gemini API failed', details: err.message });
+  }
 });
 
 module.exports = router;
