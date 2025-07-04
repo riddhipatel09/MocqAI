@@ -16,7 +16,6 @@ function speakText(text) {
   }
 }
 
-
 export default function InterviewPage() {
   const videoRef = useRef(null);
   const searchParams = useSearchParams();
@@ -26,6 +25,7 @@ export default function InterviewPage() {
   const [cameraOn, setCameraOn] = useState(false);
   const [userAnswer, setUserAnswer] = useState('');
   const [aiFollowUp, setAiFollowUp] = useState('');
+  const [conversation, setConversation] = useState([]);
 
   useEffect(() => {
     async function enableCamera() {
@@ -46,7 +46,8 @@ export default function InterviewPage() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            prompt: `Give me one short, concise mock interview question (1-2 lines only) for a ${type} interview.`,
+            prompt: `You are MocqAI, a mock interviewer for a ${type} interview. 
+Start the interview by asking a short (1-2 lines), beginner-level question in a professional tone.`,
           }),
         });
 
@@ -57,20 +58,16 @@ export default function InterviewPage() {
         }
 
         const data = await res.json();
-        console.log('✅ AI response:', data);
-
         const question = data.response || 'Could not load question. Try again.';
         setAiQuestion(question);
-
-        // ✅ Speak the question aloud
         speakText(question);
+        setConversation([{ role: 'assistant', content: question }]);
 
       } catch (error) {
         console.error('❌ Gemini fetch error:', error);
         setAiQuestion('Failed to load question. Try again later.');
       }
     }
-
 
     enableCamera();
     fetchAIQuestion();
@@ -104,26 +101,40 @@ export default function InterviewPage() {
   const handleSendAnswer = async () => {
     if (!userAnswer.trim()) return;
 
+    const updatedConversation = [
+      ...conversation,
+      { role: 'user', content: userAnswer }
+    ];
+
     try {
+      const promptText = `
+You are MocqAI, an AI interviewer for a ${type} interview.
+Conduct a professional mock interview step by step.
+
+Here is the conversation so far:
+${updatedConversation.map(c => `${c.role === 'user' ? 'User' : 'AI'}: ${c.content}`).join('\n')}
+
+Now, based on this history:
+- If the last answer is good, ask a deeper or next-level question (new topic or advanced concept).
+- If the answer is weak or incomplete, give a short follow-up question or hint.
+
+Respond in 1-2 lines max.
+      `.trim();
+
       const res = await fetch('/api/gemini', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          prompt: `You are MocqAI, an AI interviewer. Here's a user's short answer to the interview question: "${aiQuestion}". Give a concise follow-up question or actionable feedback under 3 lines.
-
-User Answer: ${userAnswer}`,
-        }),
+        body: JSON.stringify({ prompt: promptText }),
       });
 
       const data = await res.json();
-      setAiFollowUp(data.response || 'No follow-up response.');
       const followup = data.response || 'No follow-up response.';
+
       setAiFollowUp(followup);
       speakText(followup);
-
-    }
-
-    catch (error) {
+      setConversation([...updatedConversation, { role: 'assistant', content: followup }]);
+      setUserAnswer('');
+    } catch (error) {
       console.error('Error getting follow-up:', error);
       setAiFollowUp('Something went wrong while fetching follow-up.');
     }
@@ -158,15 +169,12 @@ User Answer: ${userAnswer}`,
 
         {aiFollowUp && (
           <div className="ai-message">
-            
             <div className="ai-text">
               <strong>MocqAI (Follow-Up):</strong>
               <p>{aiFollowUp}</p>
             </div>
           </div>
-
         )}
-
       </div>
     </div>
   );
