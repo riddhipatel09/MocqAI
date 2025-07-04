@@ -1,34 +1,32 @@
 .interview-container {
-    display: flex;
-    flex-direction: row; /* ⬅️ side-by-side layout */
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap; /* optional: wraps on smaller screens */
-    gap: 40px; /* spacing between left and right sides */
-    padding: 40px 20px;
-    min-height: 100vh;
-    background-color: #f0f2f5;
-    font-family: 'Segoe UI', sans-serif;
-    padding: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 40px 20px;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .video-box {
-    flex: 1;
-    min-width: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 .video-feed {
-    width: 320px;
-    height: 240px;
-    border-radius: 12px;
-    border: 2px solid #555;
-    margin-left: 70px;
+  width: 320px;
+  height: 240px;
+  border-radius: 12px;
+  border: 2px solid #555;
+  margin-left: 70px;
 }
-
 
 .chat-box {
   flex: 2;
@@ -40,30 +38,26 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Outer scrollable container for all AI messages */
-.right-panel{
- flex: 1 1 0; /* allow flexible width, but no shrinking */
-    min-width: 300px;
-    max-width: 600px;
-
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    height: auto; /* 🔒 Fixed height */
-    padding: 20px;
-    overflow-y: auto; /* ✅ scroll content */
-    box-shadow: 0 2px 5px #0000001a;
+.right-panel {
+  flex: 1 1 0;
+  min-width: 300px;
+  max-width: 600px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  height: auto;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0 2px 5px #0000001a;
 }
 
-/* Individual messages (no overflow on each) */
 .ai-question,
 .ai-followup {
-    margin-bottom: 10px;
-    background-color: #f9f9f9;
-    padding: 12px;
-    border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-radius: 8px;
 }
-
 
 .ai-question strong,
 .ai-followup strong {
@@ -72,12 +66,14 @@
   margin-bottom: 8px;
   font-size: 1.1rem;
 }
+
 .ai-message {
   display: flex;
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 15px;
 }
+
 .emoji-avatar {
   font-size: 25px;
   background-color: #0d8abc;
@@ -89,6 +85,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .avatar {
   width: 40px;
   height: 40px;
@@ -105,13 +102,12 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-
 .user-response {
-   width: 100%;
-    min-height: 80px;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 16px;
+  width: 100%;
+  min-height: 80px;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
 }
 
 .user-response textarea {
@@ -129,8 +125,8 @@
   justify-content: space-between;
   margin-top: 12px;
   gap: 10px;
+  flex-wrap: wrap;
 }
-
 
 .btnn {
   flex: 1;
@@ -142,9 +138,47 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease;
+  min-width: 120px;
 }
 
 .btnn:hover {
   background-color: #335686;
   color: #ccc;
+}
+
+/* 🔽 MOBILE RESPONSIVE STYLES */
+@media (max-width: 768px) {
+  .interview-container {
+    flex-direction: column;
+    padding: 20px 10px;
+  }
+
+  .video-box {
+    width: 100%;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .video-feed {
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .chat-box,
+  .right-panel {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  .mic-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btnn {
+    width: 100%;
+  }
 }

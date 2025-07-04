@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5000';
+const baseUrl = ''; 
+
 
 export default function AccountPage() {
   const [user, setUser] = useState(null);
