@@ -1,0 +1,6 @@
+{
+  "/course/page": "app/course/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/interview/page": "app/interview/page.js",
+  "/page": "app/page.js"
+}

@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import '../globals.css'; // this is fine if you're using global styles
+import '../globals.css';
 
 export default function CoursePage() {
   const router = useRouter();
@@ -14,15 +15,15 @@ export default function CoursePage() {
   return (
     <div className="header">
       <div className="navbar">
-        <a href="/" className="logo">MocqAI.</a>
+        <Link href="/" className="logo">MocqAI.</Link>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/course">Course</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><Link href="/">Home</Link></li>
+          <li><Link href="/about">About</Link></li>
+          <li><Link href="/course">Course</Link></li>
+          <li><Link href="/contact">Contact</Link></li>
         </ul>
         <div className="account">
-          <a href="/login"><i className="fas fa-user-circle"></i></a>
+          <Link href="/login"><i className="fas fa-user-circle"></i></Link>
         </div>
       </div>
 
@@ -48,7 +49,7 @@ export default function CoursePage() {
               <p>Get ready for aptitude rounds, group discussions, and interviews with campus-specific prep.</p>
             </div>
           </div>
-          <br></br>
+          <br />
 
           <h1>Choose by Topic</h1>
           <div className="course-cards">
@@ -143,11 +144,8 @@ export default function CoursePage() {
               <p>Explore Artificial Intelligence and build smart systems.</p>
             </div>
           </div>
-
-        
-
+        </div>
       </div>
     </div>
-    </div >
   );
 }

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5000';
 
@@ -42,8 +43,6 @@ export default function Home() {
       if (res.ok) {
         setMessage(`${isSignup ? 'Signup' : 'Login'} successful!`);
         setColor('green');
-
-        // ✅ Redirect to /course after success
         router.push('/course');
       } else {
         setMessage(data.message || 'Something went wrong.');
@@ -59,14 +58,14 @@ export default function Home() {
   return (
     <div className="header">
       <div className="navbar">
-        <a href="#" className="logo">MocqAI.</a>
+        <Link href="/" className="logo">MocqAI.</Link>
         <ul>
-          <li><a href="/about">About</a></li>
-          <li><a href="/course">Course</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><Link href="/about">About</Link></li>
+          <li><Link href="/course">Course</Link></li>
+          <li><Link href="/contact">Contact</Link></li>
         </ul>
         <div className="account">
-          <a href="/account" title="Account"><i className="uil uil-user-circle"></i></a>
+          <Link href="/account" title="Account"><i className="uil uil-user-circle"></i></Link>
         </div>
       </div>
 
@@ -75,7 +74,7 @@ export default function Home() {
           <h1>MocqAI <i className="fa-solid fa-robot"></i></h1>
           <h3>AI Interview Mocker.</h3>
           <p>An intelligent mock interview platform designed to help you prepare, practice, and perform confidently in real interviews.</p>
-          <a href="/about" className="btn">Explore More</a>
+          <Link href="/about" className="btn">Explore More</Link>
         </div>
 
         <div className="form">
@@ -111,9 +110,15 @@ export default function Home() {
           <p className="link">
             {isSignup ? 'Already have an account?' : "Don't have an account?"}
             <br />
-            <a href="#" onClick={() => setIsSignup(!isSignup)}>
+            <span
+              onClick={() => setIsSignup(!isSignup)}
+              style={{ color: 'blue', cursor: 'pointer', textDecoration: 'underline' }}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && setIsSignup(!isSignup)}
+            >
               {isSignup ? 'Login' : 'Sign Up'}
-            </a>
+            </span>
           </p>
 
           <p style={{ color }}>{message}</p>
