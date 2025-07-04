@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5000';
+const baseUrl = '';
+
 
 export default function Home() {
   const router = useRouter();
