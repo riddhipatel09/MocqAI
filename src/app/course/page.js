@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import '../globals.css'; // this is fine if you're using global styles
+import Link from 'next/link';
+import '../globals.css'; // keep if you're using global styles
 
 export default function CoursePage() {
   const router = useRouter();
@@ -50,7 +50,8 @@ export default function CoursePage() {
               <p>Get ready for aptitude rounds, group discussions, and interviews with campus-specific prep.</p>
             </div>
           </div>
-          <br></br>
+
+          <br />
 
           <h1>Choose by Topic</h1>
           <div className="course-cards">

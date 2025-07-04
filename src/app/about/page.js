@@ -44,7 +44,7 @@ export default function AboutPage() {
 
           <h2>Why MocqAI?</h2>
           <p>
-            Traditional interview prep can be intimidating or costly. MocqAI bridges the gap with an always-available, AI-driven solution that mimics real interviewer behavior. Whether you're preparing for a tech job, HR interview, or aptitude round — MocqAI has you covered.
+            Traditional interview prep can be intimidating or costly. MocqAI bridges the gap with an always-available, AI-driven solution that mimics real interviewer behavior. Whether you&apos;re preparing for a tech job, HR interview, or aptitude round — MocqAI has you covered.
           </p>
 
           <div className="button-wrapper">
