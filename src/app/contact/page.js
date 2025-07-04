@@ -1,21 +1,21 @@
 'use client';
 
 import React from 'react';
-
+import Link from 'next/link';
 
 export default function ContactPage() {
   return (
     <div className="header">
       <div className="navbar">
-        <a href="/" className="logo">MocqAI.</a>
+        <Link href="/" className="logo">MocqAI.</Link>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/course">Course</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><Link href="/">Home</Link></li>
+          <li><Link href="/about">About</Link></li>
+          <li><Link href="/course">Course</Link></li>
+          <li><Link href="/contact">Contact</Link></li>
         </ul>
         <div className="account">
-          <a href="/account"><i className="fas fa-user-circle"></i></a>
+          <Link href="/account"><i className="fas fa-user-circle"></i></Link>
         </div>
       </div>
 
